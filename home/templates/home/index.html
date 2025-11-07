@@ -1,0 +1,1392 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EversteadInvest</title>
+    <!-- Google fonts -->
+    <link rel="stylesheet" href="{% static 'css/style-liberty.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+
+</head>
+
+<body>
+    <!-- header -->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                Logo
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'investment' %}">Investment</a>
+                        </li>
+                      <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+      data-bs-toggle="dropdown" aria-expanded="false">
+      Services <i class="fas fa-angle-down"></i>
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+      <li>
+        <a class="dropdown-item" href="error.html">
+          <i class="fa-solid fa-user mr-3" style="color:#f5202a;"></i> Portfolio Overview
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="email-template.html">
+          <i class="fa-solid fa-briefcase mr-3" style="color:#f5202a;"></i> Market Alerts
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="shortcodes.html">
+          <i class="fa-solid fa-handshake mr-3" style="color:#f5202a;"></i> Buy & Sell Crypto
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="landing-single.html">
+          <i class="fa-solid fa-credit-card mr-3" style="color:#f5202a;"></i> Wallet & Payments
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="landing-single.html">
+          <i class="fa-solid fa-hand-holding-dollar mr-3" style="color:#f5202a;"></i> Staking & Rewards
+        </a>
+      </li>
+  </ul>
+</li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                        </li>
+                    </ul>
+                    <form 
+  action="{% if user.is_authenticated %}{% url 'userprofile:dashboard' %}{% else %}{% url 'userprofile:register' %}{% endif %}" 
+  method="get" 
+  class="d-flex ms-lg-2 create-wallet-form">
+
+  {% if user.is_authenticated %}
+    <button class="btn btn-style create-wallet-btn" type="submit">
+      <i class="fas fa-user me-2"></i> {{ user.username }}
+    </button>
+  {% else %}
+    <button class="btn btn-style create-wallet-btn" type="submit">
+      <i class="fas fa-wallet me-2"></i> Create Wallet
+    </button>
+  {% endif %}
+</form>
+
+
+
+<style>
+  /* Default desktop style */
+  .create-wallet-btn {
+    padding: 10px 25px !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 991px) {
+    .create-wallet-form {
+      width: 100%;
+      justify-content: center !important;
+      margin-top: 15px !important;
+    }
+
+    .create-wallet-btn {
+      padding: 8px 18px !important;
+      font-size: 0.9rem !important;
+      width: auto !important;
+      text-align: center;
+    }
+  }
+</style>
+
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!-- //header -->
+
+    <!-- banner section -->
+<div class="slider">
+    <div class="slide current">
+        <div class="bg-layer">
+          <div class="content" style="background: rgba(0, 0, 0, 0.4)!important; padding: 25px!important; border-radius: 12px!important; backdrop-filter: blur(6px)!important;">
+            <h6 style="color: #fff!important;">Empowering Smart Investors</h6>
+            <h3 style="color: #fff!important;">Grow Your Wealth with EversteadInvest</h3>
+            <a href="about.html" class="btn btn-style mt-4">Invest Now</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="slide">
+        <div class="bg-layer">
+          <div class="content" style="background: rgba(0, 0, 0, 0.4)!important; padding: 25px!important; border-radius: 12px!important; backdrop-filter: blur(6px)!important;">
+                <h6 style="color: #fff!important;">AI-Powered Investment Solutions</h6>
+                <h3 style="color: #fff!important;">Experience the Future of Crypto Growth</h3>
+                <a href="about.html" class="btn btn-style mt-4">Invest Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="slide">
+        <div class="bg-layer">
+          <div class="content" style="background: rgba(0, 0, 0, 0.4)!important; padding: 25px!important; border-radius: 12px!important; backdrop-filter: blur(6px)!important;">
+                <h6  style="color: #fff!important;">Secure. Transparent. Rewarding.</h6>
+                <h3  style="color: #fff!important;">Your Path to Financial Freedom Starts Here</h3>
+                <a href="about.html" class="btn btn-style mt-4">Invest Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="slide">
+        <div class="bg-layer">
+          <div class="content" style="background: rgba(0, 0, 0, 0.4)!important; padding: 25px!important; border-radius: 12px!important; backdrop-filter: blur(6px)!important;">
+                <h6  style="color: #fff!important;">Invest with Confidence</h6>
+                <h3  style="color: #fff!important;">Building Wealth Through Smart Crypto Investments</h3>
+                <a href="about.html" class="btn btn-style mt-4">Invest Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="buttons">
+        <button id="prev"><i class="fas fa-arrow-left"></i></button>
+        <button id="next"><i class="fas fa-arrow-right"></i></button>
+    </div>
+    <!-- TradingView Widget -->
+  <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500 Index"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "US 100 Cash CFD"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR to USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "Bitcoin"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "Ethereum"
+    }
+  ],
+  "colorTheme": "dark",
+  "locale": "en",
+  "largeChartUrl": "",
+  "isTransparent": false,
+  "showSymbolLogo": true,
+  "displayMode": "adaptive"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+    <!-- //banner section -->
+<div style="margin: 8px auto; display: block; text-align:center;">
+
+<!---728x90--->
+ 
+</div>
+    <!-- home page service grids -->
+   <section class="home-services py-5" id="services">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:700px;">
+            <h5 class="small-title mb-2">Our Core Services</h5>
+            <h3 class="title-style">Smart Investment Solutions for the Digital Economy</h3>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="box-wrap">
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="number">01</h4>
+                    <h4><a href="#url">Crypto Portfolio Management</a></h4>
+                    <p>We help you build and manage a diversified crypto portfolio using data-driven insights and AI-powered analytics for maximum growth and stability.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                <div class="box-wrap">
+                    <div class="icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h4 class="number">02</h4>
+                    <h4><a href="#url">AI Investment Automation</a></h4>
+                    <p>Experience hands-free investing with our intelligent AI bots that monitor, predict, and execute trades across major crypto exchanges in real time.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mt-lg-0 mt-4">
+                <div class="box-wrap">
+                    <div class="icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h4 class="number">03</h4>
+                    <h4><a href="#url">Secure Asset Custody</a></h4>
+                    <p>Your digital assets are protected with institutional-grade encryption, multi-signature wallets, and continuous blockchain security monitoring.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mt-lg-0 mt-4">
+                <div class="box-wrap">
+                    <div class="icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="number">04</h4>
+                    <h4><a href="#url">Investor Education</a></h4>
+                    <p>Gain the knowledge and confidence to make smart crypto investment decisions through our guided training programs and expert insights.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- //home page service grids -->
+
+   <!-- why choose section -->
+<section class="w3l-servicesblock py-5" id="whychoose">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h5 class="small-title mb-2">Our Edge</h5>
+                <h3 class="title-style">Empowering Smarter Crypto Investments with AI Precision</h3>
+                <p class="mt-3">
+                    At EversteadInvest, we combine advanced analytics, blockchain security, and artificial intelligence 
+                    to deliver consistent, data-driven investment outcomes. Our mission is to simplify digital asset investing 
+                    while maximizing long-term value for our clients.
+                </p>
+                <div class="row two-grids mt-5 pt-lg-4">
+                    <div class="col-sm-6 grids_info d-flex">
+                        <i class="fas fa-brain"></i>
+                        <div class="detail ms-3">
+                            <h4>AI-Powered Strategies</h4>
+                            <p>We leverage AI algorithms to identify market opportunities, automate trades, and optimize portfolio returns.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 grids_info d-flex mt-sm-0 mt-4">
+                        <i class="fas fa-shield-alt"></i>
+                        <div class="detail ms-3">
+                            <h4>Secure & Transparent</h4>
+                            <p>Your assets are protected by enterprise grade encryption and blockchain verification for total peace of mind.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 text-end mt-lg-0 mt-5 position-relative">
+                <img src="{% static 'images/man.jpeg' %}" alt="Why choose EversteadInvest" class="img-fluid radius-image">
+                <div class="imginfo__box">
+                    <h6 class="imginfo__title">5+</h6>
+                    <p>Years of Experience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- //why choose section -->
+
+   <!-- Investment Plans Section -->
+<section class="w3l-grids-block py-5" id="plans">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:600px;">
+            <h5 class="small-title mb-2">Investment Plans</h5>
+            <h3 class="title-style">Grow Your Wealth With Our Strategic Plans</h3>
+        </div>
+        <div class="row justify-content-center">
+            <!-- Beginner Plan -->
+<div class="col-lg-4 col-md-6 col-sm-10 mb-4">
+    <div class="bottom-block plan-card">
+        <a href="#plans" class="d-block">
+            <i class="fas fa-seedling"></i>
+            <h3 class="mt-3 mb-2">Beginner Plan</h3>
+            <div class="plan-details">
+                <div class="plan-item">
+                    <span class="plan-label"><p>Minimum:</p></span>
+                    <span class="plan-value"><p>$65</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Maximum:</p></span>
+                    <span class="plan-value"><p>$6,500</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Profit:</p></span>
+                    <span class="plan-value profit">10%</span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Duration:</p></span>
+                    <span class="plan-value"><p>24 hours</p></span>
+                </div>
+            </div>
+            <button class="btn-invest mt-3">Invest Now</button>
+        </a>
+    </div>
+</div>
+
+<!-- Second Plan -->
+<div class="col-lg-4 col-md-6 col-sm-10 mb-4">
+    <div class="bottom-block plan-card">
+        <a href="#plans" class="d-block">
+            <i class="fas fa-chart-line"></i>
+            <h3 class="mt-3 mb-2">Growth Plan</h3>
+            <div class="plan-details">
+                <div class="plan-item">
+                    <span class="plan-label"><p>Minimum:</p></span>
+                    <span class="plan-value"><p>$1,200</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Maximum:</p></span>
+                    <span class="plan-value"><p>$15,000</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Profit:</p></span>
+                    <span class="plan-value profit">15%</span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Duration:</p></span>
+                    <span class="plan-value"><p>2 days</p></span>
+                </div>
+            </div>
+            <button class="btn-invest mt-3">Invest Now</button>
+        </a>
+    </div>
+</div>
+
+<!-- Third Plan -->
+<div class="col-lg-4 col-md-6 col-sm-10 mb-4">
+    <div class="bottom-block plan-card">
+        <a href="#plans" class="d-block">
+            <i class="fas fa-rocket"></i>
+            <h3 class="mt-3 mb-2">Premium Plan</h3>
+            <div class="plan-details">
+                <div class="plan-item">
+                    <span class="plan-label"><p>Minimum:</p></span>
+                    <span class="plan-value"><p>$2,500</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Maximum:</p></span>
+                    <span class="plan-value"><p>$30,000</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Profit:</p></span>
+                    <span class="plan-value profit">35%</span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Duration:</p></span>
+                    <span class="plan-value"><p>3 days</p></span>
+                </div>
+            </div>
+            <button class="btn-invest mt-3">Invest Now</button>
+        </a>
+    </div>
+</div>
+
+<!-- Fourth Plan -->
+<div class="col-lg-4 col-md-6 col-sm-10 mb-4">
+    <div class="bottom-block plan-card">
+        <a href="#plans" class="d-block">
+            <i class="fas fa-crown"></i>
+            <h3 class="mt-3 mb-2">Elite Plan</h3>
+            <div class="plan-details">
+                <div class="plan-item">
+                    <span class="plan-label"><p>Minimum:</p></span>
+                    <span class="plan-value"><p>$4,000</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Maximum:</p></span>
+                    <span class="plan-value"><p>$45,000</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Profit:</p></span>
+                    <span class="plan-value profit">50%</span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Duration:</p></span>
+                    <span class="plan-value"><p>4 days</p></span>
+                </div>
+            </div>
+            <button class="btn-invest mt-3">Invest Now</button>
+        </a>
+    </div>
+</div>
+
+<!-- Christmas Bonus Plan 1 -->
+<div class="col-lg-4 col-md-6 col-sm-10 mb-4">
+    <div class="bottom-block plan-card christmas-card">
+        <a href="#plans" class="d-block">
+            <i class="fas fa-gift"></i>
+            <h3 class="mt-3 mb-2">Christmas Bonus Plan</h3>
+            <div class="plan-details">
+                <div class="plan-item">
+                    <span class="plan-label"><p>Minimum:</p></span>
+                    <span class="plan-value"><p>$1,500</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Maximum:</p></span>
+                    <span class="plan-value"><p>$5,000</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Profit:</p></span>
+                    <span class="plan-value profit">20%</span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Duration:</p></span>
+                    <span class="plan-value"><p>24 hours</p></span>
+                </div>
+            </div>
+            <button class="btn-invest mt-3">Invest Now</button>
+        </a>
+    </div>
+</div>
+
+<!-- Christmas Bonus Plan 2 -->
+<div class="col-lg-4 col-md-6 col-sm-10 mb-4">
+    <div class="bottom-block plan-card christmas-card">
+        <a href="#plans" class="d-block">
+            <i class="fas fa-snowflake"></i>
+            <h3 class="mt-3 mb-2">Christmas Bonus Plan 2</h3>
+            <div class="plan-details">
+                <div class="plan-item">
+                    <span class="plan-label"><p>Minimum:</p></span>
+                    <span class="plan-value"><p>$2,300</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Maximum:</p></span>
+                    <span class="plan-value"><p>$15,000</p></span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Profit:</p></span>
+                    <span class="plan-value profit">40%</span>
+                </div>
+                <div class="plan-item">
+                    <span class="plan-label"><p>Duration:</p></span>
+                    <span class="plan-value"><p>18 hours</p></span>
+                </div>
+            </div>
+            <button class="btn-invest mt-3">Invest Now</button>
+        </a>
+    </div>
+</div>
+
+</section>
+
+<style>
+.plan-card {
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 25px;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Added soft card shadow */
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.plan-card i {
+    font-size: 2.5rem;
+    color: #f52029;
+    margin-bottom: 15px;
+}
+
+.plan-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #f52029;
+    transition: color 0.3s ease;
+}
+
+.plan-card h3:hover {
+    color: #c91921;
+}
+
+.plan-details {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.plan-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.plan-label {
+    font-weight: 500;
+    color: #555;
+}
+
+.plan-value {
+    font-weight: 600;
+    color: #111;
+}
+
+.profit {
+    color: #f52029;
+    font-weight: 700;
+}
+
+/* CTA Button */
+.btn-invest {
+    background-color: #f52029;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: auto;
+    display: inline-block;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    animation: pulse 2.8s infinite ease-in-out;
+}
+
+.btn-invest:hover {
+    background-color: #c91921;
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(245, 32, 41, 0.6); }
+    70% { box-shadow: 0 0 0 8px rgba(245, 32, 41, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(245, 32, 41, 0); }
+}
+
+.christmas-card {
+    border: 2px solid #dc3545;
+    position: relative;
+}
+
+.christmas-card::before {
+    content: "Limited Time";
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: #dc3545;
+    color: white;
+    padding: 5px 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transform: rotate(45deg);
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+    .plan-card {
+        background-color: #fff;
+        color: #111;
+        border: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Light mode shadow */
+    }
+
+    .plan-label {
+        color: #555;
+    }
+
+    .plan-value {
+        color: #111;
+    }
+
+    .profit {
+        color: #f52029;
+    }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .plan-card {
+        background-color: #1b1d24;
+        color: #f5f5f5;
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); /* Dark mode shadow */
+    }
+
+    .plan-label {
+        color: #ccc;
+    }
+
+    .plan-value {
+        color: #fff;
+    }
+
+    .profit {
+        color: #fff;
+    }
+
+    .plan-card h3 {
+        color: #f52029;
+    }
+
+    .plan-card i {
+        color: #f52029;
+    }
+
+    .btn-invest {
+        background-color: #f52029;
+        color: #fff;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .plan-card {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .plan-card {
+        padding: 20px 15px;
+    }
+
+    .plan-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .plan-label, .plan-value {
+        width: 100%;
+    }
+
+    .btn-invest {
+        display: inline-block;
+        width: auto;
+        margin: 0 auto;
+    }
+}
+
+
+</style>
+
+
+    <!-- //features section -->
+
+    <!-- 3grids with bg-image section -->
+    <!-- TradingView Widget BEGIN -->
+<!-- <div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+  {
+  "defaultColumn": "overview",
+  "screener_type": "crypto_mkt",
+  "displayCurrency": "USD",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en",
+  "width": "100%",
+  "height": 550
+}
+  </script>
+</div> -->
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+  {
+  "defaultColumn": "overview",
+  "screener_type": "crypto_mkt",
+  "displayCurrency": "USD",
+  "colorTheme": "dark",
+  "isTransparent": false,
+  "locale": "en",
+  "width": "100%",
+  "height": 550
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+<!-- TradingView Widget END -->
+    <!-- //3grids with bg-image section -->
+
+   <!-- performance section -->
+<section class="w3l-progress py-5" id="performance">
+  <div class="container py-lg-5 py-md-4 py-2">
+    <div class="row align-items-center">
+      <div class="col-lg-6 about-2-secs-right mb-lg-0 mb-5">
+        <img src="{% static 'images/investmentgrowth.jpg' %}" alt="Investment growth graph" class="img-fluid radius-image" />
+      </div>
+      <div class="col-lg-6 about-2-secs-left ps-xl-5">
+        <h5 class="small-title mb-2">Our Performance</h5>
+        <h3 class="title-style mb-sm-3 mb-2">Trusted Investment Growth Backed by Real Results</h3>
+        <p>At EversteadInvest, we combine advanced AI analytics with proven crypto investment strategies to
+          deliver consistent returns and sustainable growth for our investors. Every decision is driven by data,
+          innovation, and security.</p>
+
+        <div class="w3l-progressblock mt-md-5 mt-4">
+
+          <div class="progress-info info1">
+            <h6 class="progress-tittle">Average Client ROI <span>92%</span></h6>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 92%"
+                aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress-info info2">
+            <h6 class="progress-tittle">Portfolio Diversification <span>88%</span></h6>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 88%"
+                aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress-info info3">
+            <h6 class="progress-tittle">AI-Powered Trade Accuracy <span>94%</span></h6>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 94%"
+                aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress-info info4 mb-0">
+            <h6 class="progress-tittle">Investor Retention Rate <span>97%</span></h6>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 97%"
+                aria-valuenow="97" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- //performance section -->
+
+<div style="margin: 8px auto; display: block; text-align:center;">
+
+<!---728x90--->
+ 
+</div>
+   <!-- testimonials section -->
+<section class="w3l-index4 py-5" id="testimonials">
+  <div class="container py-md-5 py-4">
+    <div class="content-slider text-center py-4">
+      <div class="clients-slider">
+        <div class="mask">
+          <ul>
+            <li class="anim1">
+              <!-- <img src="assets/images/testi1.jpg" class="img-fluid rounded-circle" alt="client image" /> -->
+              <blockquote class="quote">
+                <q>EversteadInvest has completely changed how I view digital investments. Their transparency and
+                  consistent returns gave me confidence from day one. I can finally see my money working for me.</q>
+              </blockquote>
+              <div class="source">— <strong>Maria Spencer</strong>, Entrepreneur</div>
+            </li>
+
+            <li class="anim2">
+              <!-- <img src="assets/images/testi2.jpg" class="img-fluid rounded-circle" alt="client image" /> -->
+              <blockquote class="quote">
+                <q>Professional team, real results. My portfolio grew steadily even during market fluctuations.
+                  EversteadInvest delivers what they promise — intelligent, data-driven investing.</q>
+              </blockquote>
+              <div class="source">— <strong>Peter Cruz</strong>, Financial Analyst</div>
+            </li>
+
+            <li class="anim3">
+              <!-- <img src="assets/images/testi3.jpg" class="img-fluid rounded-circle" alt="client image" /> -->
+              <blockquote class="quote">
+                <q>I started with a small investment, and within months I saw measurable growth. Their dashboard
+                  and regular performance updates keep everything clear and easy to track.</q>
+              </blockquote>
+              <div class="source">— <strong>Anna Stevens</strong>, Investor</div>
+            </li>
+
+            <li class="anim4">
+              <!-- <img src="assets/images/testi1.jpg" class="img-fluid rounded-circle" alt="client image" /> -->
+              <blockquote class="quote">
+                <q>What I appreciate most is the professionalism and responsiveness of the team. EversteadInvest
+                  is a company that truly values its clients and their long-term goals.</q>
+              </blockquote>
+              <div class="source">— <strong>Gail Forbes</strong>, Business Consultant</div>
+            </li>
+
+            <li class="anim5">
+              <!-- <img src="assets/images/testi2.jpg" class="img-fluid rounded-circle" alt="client image" /> -->
+              <blockquote class="quote">
+                <q>I’ve tried other platforms before, but none compare to the results and security I’ve experienced
+                  here. Their investment strategies are smart, modern, and reliable.</q>
+              </blockquote>
+              <div class="source">— <strong>Boyd Franklin</strong>, Tech Investor</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- //testimonials section -->
+<!-- === ROI CALCULATOR SECTION === -->
+<section class="roi-section py-5 text-center" id="roi-section">
+  <div class="container">
+    <h3 class="title-style mb-4">ROI Calculator</h3>
+    <p class="mb-4 text-muted">
+      Instantly estimate your potential returns with EversteadInvest.
+    </p>
+
+    <!-- CTA BUTTON -->
+    <button class="btn-invest toggle-calculator" onclick="toggleCalculator(true)">
+      💹 Calculate ROI
+    </button>
+
+    <!-- Hidden Calculator Modal -->
+    <div id="calculator-modal" class="calculator-modal">
+      <div class="calculator-card mx-auto">
+        <button class="btn-close" onclick="toggleCalculator(false)">✖</button>
+
+        <h4 class="mb-3 text-center" style="color: var(--accent-color);">
+          ROI Calculator
+        </h4>
+
+        <div id="error-msg" class="error-msg"></div>
+
+        <div class="form-group mb-3">
+          <label for="plan" class="form-label">Select Plan</label>
+          <select id="plan" class="form-control">
+            <option value="">-- Choose an Investment Plan --</option>
+            <option value="beginner">Beginner Plan (10%)</option>
+            <option value="growth">Growth Plan (15%)</option>
+            <option value="premium">Premium Plan (35%)</option>
+            <option value="elite">Elite Plan (50%)</option>
+            <option value="christmas1">Christmas Bonus (20%)</option>
+            <option value="christmas2">Christmas Bonus 2 (40%)</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="amount" class="form-label">Enter Investment Amount ($)</label>
+          <input type="number" id="amount" class="form-control" placeholder="e.g. 1000" />
+        </div>
+
+        <div class="button-group">
+          <button class="btn-invest" onclick="calculateROI()">Calculate</button>
+          <button class="btn-clear" onclick="clearROI()">Clear</button>
+        </div>
+
+        <div id="result" class="mt-4 result-box"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === STYLES === -->
+<style>
+/* --- BASE THEME VARIABLES --- */
+:root {
+  --accent-color: #f52029;
+  --transition: all 0.3s ease;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --card-bg: #ffffff;
+    --text-color: #111;
+    --card-border: rgba(0, 0, 0, 0.08);
+    --input-bg: #fafafa;
+    --input-border: rgba(0, 0, 0, 0.15);
+    --card-shadow: rgba(0, 0, 0, 0.08);
+    --result-bg: rgba(245, 32, 41, 0.05);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --card-bg: #1b1d24;
+    --text-color: #f5f5f5;
+    --card-border: rgba(255, 255, 255, 0.08);
+    --input-bg: #2a2c35;
+    --input-border: rgba(255, 255, 255, 0.15);
+    --card-shadow: rgba(0, 0, 0, 0.6);
+    --result-bg: rgba(245, 32, 41, 0.1);
+  }
+}
+
+/* --- CTA BUTTON --- */
+.btn-invest {
+  background: linear-gradient(135deg, #f52029 0%, #c91921 100%);
+  color: white;
+  border: none;
+  padding: 10px 26px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  animation: pulse 2.8s infinite ease-in-out;
+}
+.btn-invest:hover {
+  background: linear-gradient(135deg, #c91921 0%, #a71319 100%);
+  transform: scale(1.05);
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(245, 32, 41, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(245, 32, 41, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 32, 41, 0); }
+}
+
+/* --- MODAL BACKDROP --- */
+.calculator-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.calculator-modal.active {
+  display: flex;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* --- CARD --- */
+.calculator-card {
+  width: 90%;
+  max-width: 460px;
+  border-radius: 16px;
+  padding: 32px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 6px 30px var(--card-shadow);
+  position: relative;
+  transition: var(--transition);
+}
+
+.btn-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-close:hover {
+  color: var(--accent-color);
+}
+
+/* --- FORM ELEMENTS --- */
+.form-control {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text-color);
+  transition: var(--transition);
+}
+.form-control:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(245, 32, 41, 0.2);
+  outline: none;
+}
+.form-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: var(--text-color);
+}
+
+/* --- BUTTON GROUP --- */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-clear {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-clear:hover {
+  background: rgba(245,32,41,0.1);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* --- RESULT BOX --- */
+.result-box {
+  background: var(--result-bg);
+  border-radius: 10px;
+  padding: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: var(--transition);
+}
+.result-box.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- ERROR MESSAGE --- */
+.error-msg {
+  color: #fff;
+  background-color: var(--accent-color);
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  display: none;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 576px) {
+  .calculator-card {
+    padding: 24px;
+  }
+  .button-group {
+    flex-direction: column;
+  }
+}
+</style>
+
+<!-- === SCRIPT === -->
+<script>
+function toggleCalculator(show) {
+  const modal = document.getElementById("calculator-modal");
+  modal.classList.toggle("active", show);
+}
+
+function calculateROI() {
+  const plan = document.getElementById("plan").value;
+  const amount = parseFloat(document.getElementById("amount").value);
+  const resultBox = document.getElementById("result");
+  const errorMsg = document.getElementById("error-msg");
+
+  errorMsg.style.display = "none";
+  resultBox.classList.remove("active");
+
+  if (!plan || isNaN(amount) || amount <= 0) {
+    errorMsg.innerHTML = "⚠️ Please select a plan and enter a valid investment amount.";
+    errorMsg.style.display = "block";
+    return;
+  }
+
+  const plans = {
+    beginner: { min: 65, max: 6500, roi: 10, duration: "24 hours" },
+    growth: { min: 1200, max: 15000, roi: 15, duration: "2 days" },
+    premium: { min: 2500, max: 30000, roi: 35, duration: "3 days" },
+    elite: { min: 4000, max: 45000, roi: 50, duration: "4 days" },
+    christmas1: { min: 1500, max: 5000, roi: 20, duration: "24 hours" },
+    christmas2: { min: 2300, max: 15000, roi: 40, duration: "18 hours" },
+  };
+
+  const selected = plans[plan];
+  if (amount < selected.min || amount > selected.max) {
+    errorMsg.innerHTML = `⚠️ Please enter an amount between $${selected.min.toLocaleString()} and $${selected.max.toLocaleString()}.`;
+    errorMsg.style.display = "block";
+    return;
+  }
+
+  const profit = (amount * selected.roi) / 100;
+  const total = amount + profit;
+
+  resultBox.innerHTML = `
+    <h5 style="color: var(--accent-color);">${plan.replace(/^\w/, c => c.toUpperCase())} Plan</h5>
+    <p>Investment: <strong>$${amount.toLocaleString()}</strong></p>
+    <p>Profit (${selected.roi}%): <strong>$${profit.toLocaleString()}</strong></p>
+    <p>Total Return: <strong>$${total.toLocaleString()}</strong></p>
+    <p>Duration: <strong>${selected.duration}</strong></p>
+  `;
+  resultBox.classList.add("active");
+}
+
+function clearROI() {
+  document.getElementById("plan").value = "";
+  document.getElementById("amount").value = "";
+  document.getElementById("result").innerHTML = "";
+  document.getElementById("result").classList.remove("active");
+  document.getElementById("error-msg").style.display = "none";
+}
+</script>
+<div style="margin: 8px auto; display: block; text-align:center;">
+
+<!---728x90--->
+ 
+</div>
+    <!-- footer -->
+   <!-- footer -->
+<footer class="w3l-footer py-5">
+  <div class="container pt-4">
+    <div class="row">
+
+      <!-- About -->
+      <div class="col-lg-4 sub-one-left">
+        <h6>About EversteadInvest</h6>
+        <p>
+          EversteadInvest empowers individuals and businesses to achieve financial growth through secure,
+          transparent, and innovative investment opportunities. Our mission is to simplify wealth creation
+          with trust, technology, and expertise.
+        </p>
+        <ul class="social mt-4 pt-lg-1">
+          <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+          <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+          <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+          <li><a href="#"><span class="fab fa-telegram-plane"></span></a></li>
+          <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-5 col-md-6 mt-lg-0 mt-5 px-lg-5 sub-two-right">
+        <h6>Quick Links</h6>
+        <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'investment' %}">Investment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-lg-3 col-md-6 mt-lg-0 mt-5 sub-one-left">
+        <h6>Contact Us</h6>
+        <div class="column2">
+          <div class="href1">
+            <span class="fas fa-envelope-open"></span>
+            <a href="mailto:support@eversteadinvest.com">support@eversteadinvest.com</a>
+          </div>
+          <div class="href2 my-3">
+            <span class="fas fa-phone-alt"></span>
+            <a href="tel:+1-800-234-5678">+1 (800) 234-5678</a>
+          </div>
+          <div>
+            <p class="contact-para mb-3">
+              <span class="fas fa-map-marker-alt"></span> 42 Wall Street, New York, NY 10005
+            </p>
+          </div>
+          <div>
+            <p class="contact-para">
+              <span class="fas fa-clock"></span> Office Hours: Mon-Fri, 9AM – 7PM
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="copyright-footer text-center mt-5 pt-sm-4 pt-2">
+      <p>
+        © <span id="year"></span> <strong>EversteadInvest</strong>. All rights reserved.
+        | Crafted with <span style="color:#f52029;">❤</span> for your financial future.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Auto-update year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+
+    <!-- //footer -->
+
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+    </button>
+   <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!-- //common jquery plugin -->
+
+    <!-- banner slider -->
+    <script>
+        const slides = document.querySelectorAll(".slide");
+        const nextButton = document.getElementById("next");
+        const prevButton = document.getElementById("prev");
+        const auto = true;
+        const intervalTime = 5000;
+        let slideInterval;
+
+        const nextSlide = () => {
+            const current = document.querySelector(".current");
+            current.classList.remove("current");
+            if (current.nextElementSibling) {
+                current.nextElementSibling.classList.add("current");
+            } else {
+                slides[0].classList.add("current");
+            }
+        };
+
+        const prevSlide = () => {
+            const current = document.querySelector(".current");
+            current.classList.remove("current");
+            if (current.previousElementSibling) {
+                current.previousElementSibling.classList.add("current");
+            } else {
+                slides[slides.length - 1].classList.add("current");
+            }
+        };
+
+        nextButton.addEventListener("click", () => {
+            nextSlide();
+            if (auto) {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, intervalTime);
+            }
+        });
+        prevButton.addEventListener("click", () => {
+            prevSlide();
+            if (auto) {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, intervalTime);
+            }
+        });
+
+        if (auto) {
+            slideInterval = setInterval(nextSlide, intervalTime);
+        }
+    </script>
+    <!-- //banner slider -->
+
+    <!-- theme switch js (light and dark)-->
+<script src="{% static 'js/theme-change.js' %}"></script>    <!-- //theme switch js (light and dark)-->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- bootstrap -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>>
+    <!-- //bootstrap -->
+    <!-- //Js scripts -->
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to WealthNetTrader</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f5f8fb;
+      margin: 0;
+      padding: 0;
+      color: #333333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: #004aad;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .header img {
+      max-width: 160px;
+    }
+
+    .content {
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #004aad;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #555555;
+    }
+
+    .button-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: #004aad;
+      color: #ffffff !important;
+      padding: 14px 30px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #00337a;
+    }
+
+    .footer {
+      background-color: #f1f4f9;
+      padding: 20px 10px;
+      text-align: center;
+      font-size: 13px;
+      color: #777;
+    }
+
+    .footer a {
+      color: #004aad;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .content {
+        padding: 25px 20px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      .button {
+        padding: 12px 24px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+       <img src="https://res.cloudinary.com/dtzk9kmq3/image/upload/v1761576017/wealthnettrader_wrnqzk.jpg"  alt="WealthNetTrader Logo" style="max-width: 160px; border-radius: 12px;">
+    <!--<img src="images/wealthnettrader.png" alt="WealthNetTrader Logo" style="max-width: 160px; border-radius: 12px;">-->
+
+    </div>
+
+    <div class="content">
+      <h2>Welcome, {{ username }}!</h2>
+      <p>We’re thrilled to have you on board at <strong>WealthNetTrader</strong>.</p>
+      <p>Your account and wallet have been successfully created. You’re all set to start trading smarter and managing your wealth efficiently.</p>
+
+      <div class="button-container">
+        <a href="https://www.wealthnettrader.com/userprofile/dashboard/" class="button">Go to Dashboard</a>
+      </div>
+
+      <p>If you have any questions, our support team is here to help simply reply to this email or visit our support page.</p>
+    </div>
+
+    <div class="footer">
+      &copy; 2021 WealthNetTrader. All rights reserved.<br>
+      <a href="https://wealthnettrader.com">Visit our Website</a> |
+      <a href="mailto:support@wealthnettrader.com">Contact Support</a>
+    </div>
+  </div>
+</body>
+</html>
