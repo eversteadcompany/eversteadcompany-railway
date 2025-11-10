@@ -11,7 +11,9 @@
   {% load static %}
   <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-
+     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
@@ -398,11 +400,17 @@
     min-height: 200px; /* ensures it's visible */
   }
 
+
+  /* preloader */
+  
   </style>
 </head>
 
+
 <body class="light">
      <!-- ======== PRELOADER START ======== -->
+      {% include 'home/includes/preloader.html' %}
+
 
   <!-- Header -->
   <header class="sticky top-0 z-40 bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-700">
@@ -585,7 +593,7 @@
     
 
      <!-- Referral Card -->
-    <div class="carousel-slide bg-gradient-to-br from-teal-600 to-blue-700 rounded-2xl p-6 text-white min-w-full md:min-w-0"  style=" background: linear-gradient(135deg, #eb252f 0%, #610606 100%);">
+    <div class="carousel-slide bg-gradient-to-br from-teal-600 to-blue-700 rounded-2xl p-6 text-white min-w-full md:min-w-0"  style="background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%);">
       <div class="flex items-center space-x-4">
         <div class="glass-effect rounded-2xl w-14 h-14 flex items-center justify-center">
           <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -602,7 +610,7 @@
     </div>
 
     <!-- Balance Card -->
-    <div class=" crypto-gradient rounded-2xl p-6 text-white min-w-full md:min-w-0"  style=" background: linear-gradient(135deg, #eb252f 0%, #610606 100%);">
+    <div class=" crypto-gradient rounded-2xl p-6 text-white min-w-full md:min-w-0"  style="background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%);">
       <div class="flex items-center space-x-4">
         <div class="glass-effect rounded-2xl w-14 h-14 flex items-center justify-center">
           <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -619,7 +627,7 @@
     </div>
 
     <!-- Profits Card -->
-    <div class="carousel-slide bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl p-6 text-white min-w-full md:min-w-0"  style=" background: linear-gradient(135deg, #eb252f 0%, #610606 100%);" >
+    <div class="carousel-slide bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl p-6 text-white min-w-full md:min-w-0"  style="background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%);">
       <div class="flex items-center space-x-4">
         <div class="glass-effect rounded-2xl w-14 h-14 flex items-center justify-center">
           <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -741,7 +749,7 @@
                 <input type="date" name="paymentDate" class="custom-input" required>
               </div>
 
-              <button type="submit" class="btn btn-primary w-full" style=" background: linear-gradient(135deg, #eb252f 0%, #ac122b 100%);">Top Up</button>
+              <button type="submit" class="btn btn-primary w-full" style=" background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%);">Top Up</button>
             </form>
           </div>
         </div>
@@ -827,7 +835,7 @@
               <input type="date" name="paymentDate" class="custom-input" required>
             </div>
 
-            <button type="submit" class="btn btn-primary w-full" style=" background: linear-gradient(135deg, #eb252f 0%, #ac122b 100%);">Submit Withdrawal</button>
+            <button type="submit" class="btn btn-primary w-full" style=" background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%);">Submit Withdrawal</button>
           </form>
         </div>
       </div>
@@ -890,7 +898,7 @@
              background: linear-gradient(to right, #eb252f, #eb252f) !important; 
              border-radius: 9999px !important; box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important; 
              cursor: pointer !important; transition: all 0.3s !important;">
-    Update Profile
+    KYC
   </h3>
       <div class="max-w-3xl mx-auto">
         <div class="crypto-card rounded-2xl p-6">
@@ -939,7 +947,7 @@
               <input type="file" name="trading_certificates" class="custom-input">
             </div>
 
-            <button type="submit" class="btn btn-success w-full" style=" background: linear-gradient(135deg, #eb252f 0%, #ac122b 100%);">Save Changes</button>
+            <button type="submit" class="btn btn-success w-full" style=" background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%);">Save Changes</button>
           </form>
         </div>
       </div>
