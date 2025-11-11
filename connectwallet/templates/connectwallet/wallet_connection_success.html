@@ -21,8 +21,8 @@
       --bg-dark: #0f172a;
       --card-bg-light: rgba(255, 255, 255, 0.95);
       --card-bg-dark: rgba(255, 255, 255, 0.12);
-      --gradient-light: linear-gradient(135deg, #36a8e0, #048acd, #0369a1);
-      --gradient-dark: linear-gradient(135deg, #4e46de, #6a5eff, #8b84ff);
+      /* --gradient-light: linear-gradient(135deg, #36a8e0, #048acd, #0369a1);
+      --gradient-dark: linear-gradient(135deg, #4e46de, #6a5eff, #8b84ff); */
     }
 
     body {
@@ -292,8 +292,8 @@
 
 <body>
   <!-- Theme Toggle -->
-  <button class="theme-toggle" id="themeToggle">
-    <i class="fas fa-moon"></i>
+  <button class="theme-toggle" id="themeToggle" style="display: none !important;">
+ 
   </button>
 
   <!-- Loader -->
@@ -319,7 +319,7 @@
         </ul>
       </div>
       
-      <a href="{% url 'userprofile:dashboard' %}" class="btn-wallet">
+      <a href="{% url 'userprofile:dashboard' %}" class="btn-wallet" style=" background: linear-gradient(135deg, #eb252f 0%, #7c3aed 100%); margin-top: 5px;" >
         <i class="fas fa-arrow-left"></i> Go to Dashboard
       </a>
     </div>

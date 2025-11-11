@@ -1,25 +1,42 @@
 {% include 'home/includes/nav.html' %}
 {% load static %}
 
-<section>
+
+    <!-- inner banner -->
+    <section class="inner-banner py-5">
+        <div class="w3l-breadcrumb py-lg-5">
+            <div class="container pt-5 pb-sm-4">
+                <h4 class="inner-text-title font-weight-bold pt-sm-5 pt-4">Investment</h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><i class="fas fa-angle-right mx-2"></i>Investment</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- //inner banner -->
+
+<!---728x90--->
+
   <style>
     /* Desktop spacing for layout */
     @media (min-width: 992px) {
       .custom-container {
-        margin-top: 80px !important; /* Increased for nav clearance */
+        margin-top:-4px !important; /* Increased for nav clearance */
       }
     }
 
     /* Mobile spacing */
     @media (max-width: 991px) {
       .custom-container {
-        margin-top: 100px !important; /* More space for sticky/mobile nav */
+        margin-top: 0px !important; /* More space for sticky/mobile nav */
       }
     }
 
     /* Add a small top margin to the TradingView widget specifically */
     .tradingview-widget-container {
-      margin-top: 20px; /* pushes widget below nav */
+      margin-top: 0px; /* pushes widget below nav */
     }
   </style>
 
@@ -46,7 +63,6 @@
     </div>
     <!-- TradingView Widget END -->
   </div>
-</section>
 
 <!-- Investment Plans Section -->
 <section class="w3l-grids-block py-5" id="plans">
@@ -983,7 +999,7 @@
     </div>
     <!-- Copyright -->
     <div class="copyright-footer text-center mt-5 pt-sm-4 pt-2">
-      <p> © <span id="year"></span>
+      <p> © <span id="">2011</span>
         <strong>EversteadInvest</strong>. All rights reserved. | Crafted with <span style="color:#f52029;">❤</span> for your financial future.
       </p>
     </div>
@@ -991,7 +1007,7 @@
 </footer>
 <script>
   // Auto-update year
-  document.getElementById("year").textContent = new Date().getFullYear();
+  // document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 <!-- //footer -->
 <!-- Js scripts -->

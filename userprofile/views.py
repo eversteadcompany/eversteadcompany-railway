@@ -496,12 +496,12 @@ def profile_update(request):
 # Success view for profile update
 def profile_update_success(request):
     username = request.user.username
-    return render(request, 'userprofile/success.html', {'username': username})
+    return render(request, 'userprofile/kyc_success.html', {'username': username})
 
 
 # Error view for profile update failure
 def profile_update_error(request):
-    return render(request, 'userprofile/error.html')
+    return render(request, 'userprofile/kyc_error.html')
 
 
 
