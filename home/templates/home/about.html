@@ -268,61 +268,34 @@
 </section>
 <!-- //team section -->
 
-
 <!-- footer -->
-  <footer class="w3l-footer py-5">
+<footer class="w3l-footer py-5">
   <div class="container pt-4">
     <div class="row">
       <!-- About -->
       <div class="col-lg-4 sub-one-left">
         <h6>About EversteadInvest</h6>
-        <p> EversteadInvest empowers individuals and businesses to achieve financial growth through secure, transparent, and innovative investment opportunities. Our mission is to simplify wealth creation with trust, technology, and expertise. </p>
+        <p>EversteadInvest empowers individuals and businesses to achieve financial growth through secure, transparent, and innovative investment opportunities. Our mission is to simplify wealth creation with trust, technology, and expertise.</p>
         <ul class="social mt-4 pt-lg-1">
-          <li>
-            <a href="#">
-              <span class="fab fa-facebook-f"></span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="fab fa-twitter"></span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="fab fa-linkedin-in"></span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="fab fa-telegram-plane"></span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="fab fa-instagram"></span>
-            </a>
-          </li>
+          <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+          <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+          <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+          <li><a href="#"><span class="fab fa-telegram-plane"></span></a></li>
+          <li><a href="#"><span class="fab fa-instagram"></span></a></li>
         </ul>
       </div>
+
       <!-- Quick Links -->
       <div class="col-lg-5 col-md-6 mt-lg-0 mt-5 px-lg-5 sub-two-right">
         <h6>Quick Links</h6>
         <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'investment' %}">Investment</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-          </li>
+          <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'investment' %}">Investment</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
         </ul>
       </div>
+
       <!-- Contact -->
       <div class="col-lg-3 col-md-6 mt-lg-0 mt-5 sub-one-left">
         <h6>Contact Us</h6>
@@ -337,7 +310,7 @@
           </div>
           <div>
             <p class="contact-para mb-3">
-              <span class="fas fa-map-marker-alt"></span> 32 Cornhill, London EC3V 3S
+              <span class="fas fa-map-marker-alt"></span> 32 Cornhill, London EC3V 3SG
             </p>
           </div>
           <div>
@@ -345,9 +318,18 @@
               <span class="fas fa-clock"></span> Office Hours: Mon-Fri, 9AM – 7PM
             </p>
           </div>
+
+          <!-- Download Certificate -->
+          <div class="mt-4">
+            {% load static %}
+            <a href="{% static 'images/certificate.jpeg' %}" download="EversteadInvest_Certificate.jpg" class="btn btn-primary" style="background-color:#6a5eff; border:none;">
+              <i class="fa fa-download"></i> Download Company Certificate
+            </a>
+          </div>
         </div>
       </div>
     </div>
+
     <!-- Copyright -->
     <div class="copyright-footer text-center mt-5 pt-sm-4 pt-2">
       <p> © <span id="year">2011</span>
@@ -356,6 +338,7 @@
     </div>
   </div>
 </footer>
+
     <!-- //footer -->
 
     <!-- Js scripts -->
