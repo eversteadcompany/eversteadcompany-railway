@@ -743,6 +743,70 @@
     </div>
   </div>
 </div>
+<!-- userprofile/dashboard.html -->
+
+<div class="referral-section max-w-md mx-auto my-6 p-6 rounded-xl border bg-white dark:bg-gray-800 dark:border-gray-700 text-center shadow-md">
+    <!-- Header -->
+    <h3 class="text-2xl font-bold mb-2 text-gray-800 dark:text-gray-100 flex items-center justify-center gap-2">
+        <span>💰</span> Refer & Earn!
+    </h3>
+    <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+        Share your referral code or link with friends and earn rewards when they join.
+    </p>
+
+    <!-- Referral Code -->
+    <div class="mb-4 flex flex-col sm:flex-row justify-center items-center gap-2">
+        <input 
+            type="text" 
+            id="referralCodeInput" 
+            value="{{ user.userprofile.referral_code }}" 
+            readonly 
+            class="custom-input w-full sm:w-2/3 text-center"
+        >
+        <button 
+            onclick="copyReferralCode()" 
+            class="btn btn-success px-4 py-2 text-sm animate-pulse sm:w-auto w-full flex justify-center items-center gap-1"
+        >
+            Copy Code <span>🏆</span>
+        </button>
+    </div>
+
+    <!-- Referral Link -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-2">
+        <input 
+            type="text" 
+            id="referralLinkInput" 
+            value="{{ request.scheme }}://{{ request.get_host }}{% url 'userprofile:register' %}?ref={{ user.userprofile.referral_code }}" 
+            readonly 
+            class="custom-input w-full sm:w-2/3 text-center"
+        >
+        <button 
+            onclick="copyReferralLink()" 
+            class="btn btn-primary px-4 py-2 text-sm animate-pulse sm:w-auto w-full flex justify-center items-center gap-1"
+        >
+            Copy Link <span>🏆</span>
+        </button>
+    </div>
+</div>
+
+<script>
+function copyReferralCode() {
+    const input = document.getElementById("referralCodeInput");
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Referral code copied: " + input.value);
+}
+
+function copyReferralLink() {
+    const input = document.getElementById("referralLinkInput");
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Referral link copied: " + input.value);
+}
+</script>
+
 
 <!-- Smooth Auto-Scroll Script -->
 <script>
@@ -838,6 +902,83 @@
                 <label class="form-label">Coin Name</label>
                 <input type="text" name="coinName" id="id_coinName" class="custom-input bg-gray-50 dark:bg-gray-700" readonly required>
               </div>
+<div class="form-group">
+  <label class="form-label">Select Network</label>
+  <select name="network_type" class="custom-input" required>
+    <option value="" disabled selected>Choose network</option>
+
+    <!-- Bitcoin Networks -->
+    <option value="BTC">Bitcoin Network</option>
+    <option value="BTC-LN">Lightning Network</option>
+
+    <!-- EVM Networks -->
+    <option value="ERC20">Ethereum Network (ERC20)</option>
+    <option value="BEP20">Binance Smart Chain (BEP20)</option>
+    <option value="POLYGON">Polygon Network</option>
+    <option value="AVAX-C">Avalanche C-Chain</option>
+    <option value="FANTOM">Fantom Opera Network</option>
+    <option value="ARBITRUM">Arbitrum One</option>
+    <option value="OPTIMISM">Optimism Network</option>
+    <option value="BASE">Base Network</option>
+    <option value="KCC">KuCoin Community Chain</option>
+    <option value="CRO">Cronos Chain</option>
+
+    <!-- Tron -->
+    <option value="TRC20">Tron Network (TRC20)</option>
+
+    <!-- Binance Chain -->
+    <option value="BEP2">Binance Chain (BEP2)</option>
+
+    <!-- Solana -->
+    <option value="SOL">Solana Network</option>
+
+    <!-- Ripple / Stellar -->
+    <option value="XRP">Ripple Network</option>
+    <option value="XLM">Stellar Network</option>
+
+    <!-- Cosmos Ecosystem -->
+    <option value="ATOM">Cosmos Hub</option>
+    <option value="LUNA">Terra Network</option>
+    <option value="KAVA">Kava Network</option>
+
+    <!-- Cardano -->
+    <option value="ADA">Cardano Network</option>
+
+    <!-- Polkadot / Substrate -->
+    <option value="DOT">Polkadot Network</option>
+    <option value="KSM">Kusama Network</option>
+
+    <!-- Algorand -->
+    <option value="ALGO">Algorand Network</option>
+
+    <!-- Hedera -->
+    <option value="HBAR">Hedera Hashgraph</option>
+
+    <!-- Avalanche X-Chain -->
+    <option value="AVAX-X">Avalanche X-Chain</option>
+
+    <!-- Tezos -->
+    <option value="XTZ">Tezos Network</option>
+
+    <!-- Near -->
+    <option value="NEAR">Near Protocol</option>
+
+    <!-- Harmony -->
+    <option value="ONE">Harmony Network</option>
+
+    <!-- EOS -->
+    <option value="EOS">EOS Network</option>
+
+    <!-- Litecoin -->
+    <option value="LTC">Litecoin Network</option>
+
+    <!-- Monero -->
+    <option value="XMR">Monero Network</option>
+
+    <!-- Bitcoin Cash -->
+    <option value="BCH">Bitcoin Cash Network</option>
+  </select>
+</div>
 
               <div class="form-group">
                 <label class="form-label">Amount</label>

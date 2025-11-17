@@ -108,96 +108,336 @@ from .forms import UserRegistrationForm, UserProfileForm
 
 logger = logging.getLogger(__name__)
 
+# def register(request):
+#     # ✅ Redirect if already logged in
+#     if request.user.is_authenticated:
+#         messages.info(request, "You’re already logged in.")
+#         return redirect("userprofile:dashboard")
+
+#     if request.method == "POST":
+#         user_form = UserRegistrationForm(request.POST)
+#         profile_form = UserProfileForm(request.POST)
+
+#         if user_form.is_valid() and profile_form.is_valid():
+#             try:
+#                 username = user_form.cleaned_data["username"]
+#                 email = user_form.cleaned_data["email"]
+
+#                 # Check for existing username/email
+#                 if User.objects.filter(username=username).exists():
+#                     raise ValidationError(f"The username '{username}' is already taken.")
+#                 if User.objects.filter(email=email).exists():
+#                     raise ValidationError(f"The email address '{email}' is already in use.")
+
+#                 # Save user
+#                 user = user_form.save(commit=False)
+#                 user.set_password(user_form.cleaned_data["password1"])
+#                 user.save()
+#                 logger.info(f"✅ User {user.username} created successfully.")
+
+#                 # Save profile
+#                 profile = profile_form.save(commit=False)
+#                 profile.user = user
+
+#                 referral_code = profile_form.cleaned_data.get("referral_bonus")
+#                 if referral_code == "SEED14F":
+#                     profile.referral_reward += Decimal('50.00')
+
+#                 profile.save()
+#                 logger.info(f"✅ Profile for {user.username} saved successfully.")
+
+#                 # === Send Welcome Email ===
+#                 try:
+#                     subject = "Welcome to Eversteadinvest!"
+#                     from_email = settings.DEFAULT_FROM_EMAIL
+#                     to = [user.email]
+
+#                     # ✅ Dynamic link to your dashboard
+#                     dashboard_url = "https://www.eversteadinvest.com/userprofile/dashboard/"
+
+#                     # Context passed to your HTML template
+#                     context = {
+#                         "username": user.username,
+#                         "year": datetime.now().year,
+#                         "dashboard_url": dashboard_url,
+#                     }
+
+#                     # ✅ Render your HTML email template
+#                     html_content = render_to_string("userprofile/register_mail.html", context)
+
+#                     # Optional plain-text fallback (for email clients that block HTML)
+#                     text_content = f"Welcome {user.username}! Visit your dashboard at {dashboard_url}"
+
+#                     msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+#                     msg.attach_alternative(html_content, "text/html")
+#                     msg.send()
+
+#                     logger.info(f"📧 Welcome email sent successfully to {user.email}")
+
+#                 except Exception as e:
+#                     logger.error(f"❌ Error sending welcome email: {e}")
+
+#                 # ✅ Auto-login and redirect
+#                 django_login(request, user)
+#                 messages.success(request, "Your Wallet has been created successfully!")
+#                 return redirect("userprofile:dashboard")
+
+#             except ValidationError as e:
+#                 logger.error(f"Validation error: {e.message}")
+#                 messages.error(request, e.message)
+#                 return redirect("userprofile:register")
+
+#             except Exception as e:
+#                 logger.error(f"Unexpected error: {str(e)}")
+#                 messages.error(request, "An error occurred. Please try again later.")
+#                 return redirect("userprofile:register")
+
+#         else:
+#             logger.warning(f"Form errors: {user_form.errors}, {profile_form.errors}")
+#             messages.error(request, "Please correct the errors in the form.")
+#     else:
+#         user_form = UserRegistrationForm()
+#         profile_form = UserProfileForm()
+
+#     return render(request, "userprofile/register.html", {
+#         "user_form": user_form,
+#         "profile_form": profile_form,
+#     })
+
+
+
+
+from decimal import Decimal
+from datetime import datetime
+from django.contrib.auth import login as django_login
+from django.contrib import messages
+from django.core.exceptions import ValidationError
+from django.core.mail import EmailMultiAlternatives
+from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.conf import settings
+from django.contrib.auth.models import User
+from userprofile.models import UserProfile
+import logging
+
+logger = logging.getLogger(__name__)
+from decimal import Decimal
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.core.exceptions import ValidationError
+from django.contrib.auth import login as django_login
+from django.contrib.auth.models import User
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from datetime import datetime
+import logging
+
+from .forms import UserRegistrationForm, UserProfileForm
+from .models import UserProfile
+
+logger = logging.getLogger(__name__)
+
+# def register(request):
+#     # Redirect if already logged in
+#     if request.user.is_authenticated:
+#         messages.info(request, "You’re already logged in.")
+#         return redirect("userprofile:dashboard")
+
+#     if request.method == "POST":
+#         user_form = UserRegistrationForm(request.POST)
+#         profile_form = UserProfileForm(request.POST, request.FILES)
+
+#         if user_form.is_valid() and profile_form.is_valid():
+#             try:
+#                 username = user_form.cleaned_data["username"]
+#                 email = user_form.cleaned_data["email"]
+
+#                 # Check for existing username/email
+#                 if User.objects.filter(username=username).exists():
+#                     raise ValidationError(f"The username '{username}' is already taken.")
+#                 if User.objects.filter(email=email).exists():
+#                     raise ValidationError(f"The email address '{email}' is already in use.")
+
+#                 # Save user
+#                 user = user_form.save(commit=False)
+#                 user.set_password(user_form.cleaned_data["password1"])
+#                 user.save()
+#                 logger.info(f"✅ User {user.username} created successfully.")
+
+#                 # Create profile (referral_code is auto-generated in save())
+#                 profile = profile_form.save(commit=False)
+#                 profile.user = user
+
+#                 # Apply referral reward if a valid referral code was entered
+#                 referral_code = profile_form.cleaned_data.get("referral_bonus")
+#                 if referral_code == "SEED14F":
+#                     profile.referral_reward += Decimal("50.00")
+
+#                 profile.save()  # referral_code is auto-generated here
+#                 logger.info(f"✅ Profile for {user.username} saved successfully with referral code {profile.referral_code}")
+
+#                 # Send Welcome Email
+#                 try:
+#                     subject = "Welcome to Eversteadinvest!"
+#                     from_email = settings.DEFAULT_FROM_EMAIL
+#                     to = [user.email]
+
+#                     # Use localhost dashboard URL for development
+#                     dashboard_url = "http://127.0.0.1:8000/userprofile/dashboard/"
+
+#                     context = {
+#                         "username": user.username,
+#                         "year": datetime.now().year,
+#                         "dashboard_url": dashboard_url,
+#                         "referral_code": profile.referral_code
+#                     }
+
+#                     html_content = render_to_string("userprofile/register_mail.html", context)
+#                     text_content = f"Welcome {user.username}! Visit your dashboard at {dashboard_url}. Your referral code is {profile.referral_code}"
+
+#                     msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+#                     msg.attach_alternative(html_content, "text/html")
+#                     msg.send()
+#                     logger.info(f"📧 Welcome email sent successfully to {user.email}")
+
+#                 except Exception as e:
+#                     logger.error(f"❌ Error sending welcome email: {e}")
+
+#                 # Auto-login and redirect
+#                 django_login(request, user)
+#                 messages.success(request, "Your Wallet has been created successfully!")
+#                 return redirect("userprofile:dashboard")
+
+#             except ValidationError as e:
+#                 logger.error(f"Validation error: {e.message}")
+#                 messages.error(request, e.message)
+#                 return redirect("userprofile:register")
+
+#             except Exception as e:
+#                 logger.error(f"Unexpected error: {str(e)}")
+#                 messages.error(request, "An error occurred. Please try again later.")
+#                 return redirect("userprofile:register")
+
+#         else:
+#             logger.warning(f"Form errors: {user_form.errors}, {profile_form.errors}")
+#             messages.error(request, "Please correct the errors in the form.")
+
+#     else:
+#         user_form = UserRegistrationForm()
+#         profile_form = UserProfileForm()
+
+#     return render(request, "userprofile/register.html", {
+#         "user_form": user_form,
+#         "profile_form": profile_form,
+#     })
+
+
+# def register(request):
+#     if request.user.is_authenticated:
+#         messages.info(request, "You’re already logged in.")
+#         return redirect("userprofile:dashboard")
+
+#     if request.method == "POST":
+#         user_form = UserRegistrationForm(request.POST)
+#         profile_form = UserProfileForm(request.POST, request.FILES)
+
+#         if user_form.is_valid() and profile_form.is_valid():
+#             try:
+#                 username = user_form.cleaned_data["username"]
+#                 email = user_form.cleaned_data["email"]
+
+#                 if User.objects.filter(username=username).exists():
+#                     raise ValidationError(f"The username '{username}' is already taken.")
+#                 if User.objects.filter(email=email).exists():
+#                     raise ValidationError(f"The email address '{email}' is already in use.")
+
+#                 user = user_form.save(commit=False)
+#                 user.set_password(user_form.cleaned_data["password1"])
+#                 user.save()
+
+#                 profile = profile_form.save(commit=False)
+#                 profile.user = user
+
+#                 # Save the entered referral code
+#                 used_code = profile_form.cleaned_data.get("referral_bonus")
+#                 if used_code:
+#                     profile.used_referral_code = used_code
+#                     # Apply reward if the code is valid
+#                     if used_code == "SEED14F":
+#                         profile.referral_reward += Decimal("50.00")
+
+#                 profile.save()
+
+#                 django_login(request, user)
+#                 messages.success(request, "Your Wallet has been created successfully!")
+#                 return redirect("userprofile:dashboard")
+
+#             except ValidationError as e:
+#                 messages.error(request, e.message)
+#                 return redirect("userprofile:register")
+
+#             except Exception as e:
+#                 messages.error(request, "An error occurred. Please try again later.")
+#                 return redirect("userprofile:register")
+
+#         else:
+#             messages.error(request, "Please correct the errors in the form.")
+
+#     else:
+#         user_form = UserRegistrationForm()
+#         profile_form = UserProfileForm()
+
+#     return render(request, "userprofile/register.html", {
+#         "user_form": user_form,
+#         "profile_form": profile_form,
+#     })
+
+
 def register(request):
-    # ✅ Redirect if already logged in
+    # Redirect if already logged in
     if request.user.is_authenticated:
         messages.info(request, "You’re already logged in.")
         return redirect("userprofile:dashboard")
 
+    # Check if a referral code is in the URL query parameters
+    initial_referral = request.GET.get("ref", "")
+
     if request.method == "POST":
         user_form = UserRegistrationForm(request.POST)
-        profile_form = UserProfileForm(request.POST)
+        profile_form = UserProfileForm(request.POST, request.FILES)
 
         if user_form.is_valid() and profile_form.is_valid():
             try:
-                username = user_form.cleaned_data["username"]
-                email = user_form.cleaned_data["email"]
-
-                # Check for existing username/email
-                if User.objects.filter(username=username).exists():
-                    raise ValidationError(f"The username '{username}' is already taken.")
-                if User.objects.filter(email=email).exists():
-                    raise ValidationError(f"The email address '{email}' is already in use.")
-
-                # Save user
                 user = user_form.save(commit=False)
                 user.set_password(user_form.cleaned_data["password1"])
                 user.save()
-                logger.info(f"✅ User {user.username} created successfully.")
 
-                # Save profile
                 profile = profile_form.save(commit=False)
                 profile.user = user
 
-                referral_code = profile_form.cleaned_data.get("referral_bonus")
-                if referral_code == "SEED14F":
-                    profile.referral_reward += Decimal('50.00')
+                # Store the code used (if any) in used_referral_code
+                used_ref = profile_form.cleaned_data.get("referral_bonus") or initial_referral
+                if used_ref:
+                    profile.used_referral_code = used_ref
+
+                    # Optional: give bonus if the referral code matches a real user
+                    if used_ref == "SEED14F":  # or you can check against real users
+                        profile.referral_reward += Decimal("50.00")
 
                 profile.save()
-                logger.info(f"✅ Profile for {user.username} saved successfully.")
 
-                # === Send Welcome Email ===
-                try:
-                    subject = "Welcome to Eversteadinvest!"
-                    from_email = settings.DEFAULT_FROM_EMAIL
-                    to = [user.email]
-
-                    # ✅ Dynamic link to your dashboard
-                    dashboard_url = "https://www.eversteadinvest.com/userprofile/dashboard/"
-
-                    # Context passed to your HTML template
-                    context = {
-                        "username": user.username,
-                        "year": datetime.now().year,
-                        "dashboard_url": dashboard_url,
-                    }
-
-                    # ✅ Render your HTML email template
-                    html_content = render_to_string("userprofile/register_mail.html", context)
-
-                    # Optional plain-text fallback (for email clients that block HTML)
-                    text_content = f"Welcome {user.username}! Visit your dashboard at {dashboard_url}"
-
-                    msg = EmailMultiAlternatives(subject, text_content, from_email, to)
-                    msg.attach_alternative(html_content, "text/html")
-                    msg.send()
-
-                    logger.info(f"📧 Welcome email sent successfully to {user.email}")
-
-                except Exception as e:
-                    logger.error(f"❌ Error sending welcome email: {e}")
-
-                # ✅ Auto-login and redirect
+                # Continue with welcome email, login, redirect...
                 django_login(request, user)
                 messages.success(request, "Your Wallet has been created successfully!")
                 return redirect("userprofile:dashboard")
 
-            except ValidationError as e:
-                logger.error(f"Validation error: {e.message}")
-                messages.error(request, e.message)
-                return redirect("userprofile:register")
-
             except Exception as e:
-                logger.error(f"Unexpected error: {str(e)}")
-                messages.error(request, "An error occurred. Please try again later.")
-                return redirect("userprofile:register")
-
-        else:
-            logger.warning(f"Form errors: {user_form.errors}, {profile_form.errors}")
-            messages.error(request, "Please correct the errors in the form.")
+                messages.error(request, f"Error: {str(e)}")
     else:
+        # Pre-fill the referral code if present in the URL
         user_form = UserRegistrationForm()
-        profile_form = UserProfileForm()
+        profile_form = UserProfileForm(initial={"referral_bonus": initial_referral})
 
     return render(request, "userprofile/register.html", {
         "user_form": user_form,

@@ -165,64 +165,128 @@
 </h2> -->
  
     <div class="container mt-5">
-       <div class="card shadow-lg p-4">
-  <div class="text-center">
-    <!-- Success Icon -->
-    <i class="fas fa-circle-check text-success" 
-       style="font-size: 65px; margin-bottom: 15px; filter: drop-shadow(0 0 6px rgba(25,135,84,0.4));"></i>
+    <div class="card shadow-lg p-4">
+        <div class="text-center">
 
-    <h2 class="mb-4 text-success">
-      <i class="bi bi-clock" style="font-size: 1.5rem; margin-right: 8px;"></i>
-      Complete your Deposit
-    </h2>
+            <!-- Success Icon -->
+            <i class="fas fa-circle-check text-success"
+               style="font-size: 65px; margin-bottom: 15px; filter: drop-shadow(0 0 6px rgba(25,135,84,0.4));"></i>
 
-    <p class="lead">
-      Hi <strong><b>{{ user_name|capfirst }}</b></strong>, 
-      A deposit of <strong class="text-success">
-        <b><span class="text-muted text-success">$</span>{{ deposit_amount }}</b>
-      </strong> has been successfully placed.
+            <h2 class="mb-4 text-success">
+                <i class="bi bi-clock" style="font-size: 1.5rem; margin-right: 8px;"></i>
+                Complete your Deposit
+            </h2>
+
+            <p class="lead">
+                Hi <strong><b>{{ user_name|capfirst }}</b></strong>,
+                A deposit of <strong class="text-success">
+                    <b><span class="text-muted text-success">$</span>{{ deposit_amount }}</b>
+                </strong> has been successfully placed.
+            </p>
+
+            <p>Kindly copy the address below and complete the transfer using your exchange/crypto wallet.</p>
+            <p class="text-muted">Transaction Fee : <b>0.00</b></p>
+
+            <!-- Countdown -->
+            <div class="countdown-box">
+                <p class="expiry-text">Expires: <b id="countdown-text">01:00:00</b></p>
+            </div>
+        </div>
+
+        <!-- Wallet Address Section -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h3 class="card-title">Wallet Address:</h3>
+                <div class="input-group mb-3">
+                    <input type="text" id="walletAddress" class="form-control" value="{{ wallet_address }}" readonly>
+                    <button class="btn copy_btn" onclick="copyWalletAddress()">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <p class="text-muted">Click the "Copy" button to copy the wallet address.</p>
+            </div>
+        </div>
+
+        <!-- Wallet Name Section -->
+        <div class="card mt-4">
+            <div class="card-body text-center">
+                <h3 class="card-title">Wallet Name:</h3>
+                <p class="lead">{{ wallet_name }}</p>
+            </div>
+        </div>
+
+        <!-- QR Code Section (Added Here) -->
+        <div class="card mt-4">
+            <div class="card-body text-center">
+                <h3 class="card-title mb-3">Scan QR Code to Deposit</h3>
+
+                <img 
+                    src="{{ wallet.icon.url }}" 
+                    alt="{{ wallet.name }} QR Code"
+                    class="img-fluid"
+                    style="
+                        width: 200px; 
+                        height: 200px; 
+                        max-width: 90%; 
+                        object-fit: contain; 
+                        border: 1px solid #ddd; 
+                        border-radius: 12px;
+                        padding: 8px;
+                        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                    "
+                />
+
+                <p class="text-muted mt-2">Scan this QR code using your wallet app to pay instantly.</p>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+       <div class="mt-4 text-center">
+    <p class="text-muted">
+        Please complete the transaction on your exchange platform.
     </p>
-    <p>Kindly copy the address below and complete the transfer using your exchange/crypto wallet.</p>
-    <p class="text-muted">Transaction Fee : <b>0.00</b></p>
 
-    <!-- Countdown -->
-    <div class="countdown-box">
-      <p class="expiry-text">Expires: <b id="countdown-text">01:00:00</b></p>
-    </div>
-  </div>
-
-  <!-- Wallet Address Section -->
-  <div class="card mt-4">
-    <div class="card-body">
-      <h3 class="card-title">Wallet Address:</h3>
-      <div class="input-group mb-3">
-        <input type="text" id="walletAddress" class="form-control" value="{{ wallet_address }}" readonly>
-        <button class="btn copy_btn" onclick="copyWalletAddress()">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-      </div>
-      <p class="text-muted">Click the "Copy" button to copy the wallet address.</p>
-    </div>
-  </div>
-
-  <!-- Wallet Name Section -->
-  <div class="card mt-4">
-    <div class="card-body">
-      <h3 class="card-title">Wallet Name:</h3>
-      <p class="lead">{{ wallet_name }}</p>
-    </div>
-  </div>
-
-  <!-- Instructions -->
-  <div class="mt-4 text-center">
-    <p class="text-muted">Please complete the transaction on your exchange platform.</p>
-    <a href="{% url 'userprofile:dashboard' %}" class="dashboard_btn" style="text-decoration:none;">
-      <i class="fas fa-arrow-left"></i> Return to Your Dashboard
+    <a href="{% url 'userprofile:dashboard' %}" 
+       class="dashboard-btn-responsive">
+        <i class="fas fa-arrow-left"></i> Return to Your Dashboard
     </a>
-  </div>
 </div>
 
+<style>
+    .dashboard-btn-responsive {
+        display: inline-block;
+        padding: 12px 20px;
+        font-size: 16px;
+         background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%) !important;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: 0.25s ease;
+        width: auto;
+    }
+
+    /* Hover */
+    .dashboard-btn-responsive:hover {
+        background-color: #084298;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    /* 🌟 FULL MOBILE RESPONSIVENESS */
+    @media (max-width: 575px) {
+        .dashboard-btn-responsive {
+            width: 90%;           /* full width on mobile */
+            font-size: 18px;      /* larger text for mobile */
+            padding: 14px 0;
+            text-align: center;
+        }
+    }
+</style>
+
+
     </div>
+</div>
+
 
     <!-- Footer Section -->
     <footer>

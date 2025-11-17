@@ -804,13 +804,23 @@
 
                     <div style="space-y: 12px;">
                         <!-- Referral Code -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="{{ profile_form.referral_bonus.id_for_label }}">Referral Code</label>
                             {{ profile_form.referral_bonus|add_class:"form-control"|attr:"placeholder:Enter referral code if any" }}
                             {% if profile_form.referral_bonus.errors %}
                                 <span class="error-message">{{ profile_form.referral_bonus.errors.0 }}</span>
                             {% endif %}
-                        </div>
+                        </div> -->
+
+                                            <!-- Referral Code -->
+                    <div class="form-group">
+                        <label for="{{ profile_form.referral_bonus.id_for_label }}">Referral Code</label>
+                        {{ profile_form.referral_bonus|add_class:"form-control"|attr:"readonly:true placeholder:Referral code from link" }}
+                        {% if profile_form.referral_bonus.errors %}
+                            <span class="error-message">{{ profile_form.referral_bonus.errors.0 }}</span>
+                        {% endif %}
+                    </div>
+
 
                         <!-- Password -->
                         <div class="form-group">

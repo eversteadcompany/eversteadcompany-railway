@@ -443,20 +443,42 @@ def approve_transaction_view(request, transaction_id):
 
 
 
+# @login_required
+# def deposit_success(request):
+#     deposit_amount = request.GET.get('deposit_amount')
+#     wallet_address = request.GET.get('wallet_address')
+#     wallet_name = request.GET.get('wallet_name')
+#     user_name = request.GET.get('user_name')
+#     plan_name = request.GET.get('plan_name')
+
+#     return render(request, 'investment/deposit_success.html', {
+#         'deposit_amount': deposit_amount,
+#         'wallet_address': wallet_address,
+#         'wallet_name': wallet_name,
+#         'user_name': user_name,
+#         'plan_name': plan_name
+#     })
+
+from django.shortcuts import get_object_or_404
+
 @login_required
 def deposit_success(request):
     deposit_amount = request.GET.get('deposit_amount')
     wallet_address = request.GET.get('wallet_address')
-    wallet_name = request.GET.get('wallet_name')
     user_name = request.GET.get('user_name')
     plan_name = request.GET.get('plan_name')
 
+    # Get the wallet object for the selected wallet address
+    from investment.models import Wallet  # adjust import
+    wallet = get_object_or_404(Wallet, wallet_address=wallet_address)
+
     return render(request, 'investment/deposit_success.html', {
         'deposit_amount': deposit_amount,
-        'wallet_address': wallet_address,
-        'wallet_name': wallet_name,
+        'wallet_address': wallet.wallet_address,
+        'wallet_name': wallet.name,
         'user_name': user_name,
-        'plan_name': plan_name
+        'plan_name': plan_name,
+        'wallet': wallet,  # pass the object to the template
     })
 
 
