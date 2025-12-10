@@ -18,6 +18,24 @@
 
 
 
+# from django.contrib import admin
+# from django.urls import path, include
+# from django.conf import settings
+# from django.conf.urls.static import static
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', include('home.urls')),
+#     path('userprofile/', include('userprofile.urls')),
+#     path('investment/', include('investment.urls')),
+#     path('connectwallet/', include('connectwallet.urls')),
+# ]
+
+# # -----------------------------
+# # MEDIA FILES (works in DEBUG & PRODUCTION)
+# # -----------------------------
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -32,6 +50,8 @@ urlpatterns = [
 ]
 
 # -----------------------------
-# MEDIA FILES (works in DEBUG & PRODUCTION)
+# MEDIA FILES
+# Serve media in development & production
 # -----------------------------
+# WhiteNoise doesn't serve media, so this is safe for Railway
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
