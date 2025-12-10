@@ -293,7 +293,7 @@ else:
 
 # Resend API Key
 RESEND_API_KEY = os.getenv("RESEND_API_KEY")
-
+RESEND_API_KEY = 're_6z45UvUf_3vsdWmedyVes7MwFRsA3orXs'
 # Default sender email (Resend requires domain verification)
 DEFAULT_FROM_EMAIL = "support@eversteadinvest.com"
 DEFAULT_FROM_EMAIL = DEFAULT_FROM_EMAIL
