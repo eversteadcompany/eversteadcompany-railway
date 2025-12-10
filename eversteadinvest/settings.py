@@ -21,7 +21,12 @@ SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
 # -----------------------------
 # DEBUG - affects only Django debugging
 # -----------------------------
-DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
+# DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
+# -----------------------------
+# DEBUG - always False for production
+# -----------------------------
+DEBUG = False
+
 
 # -----------------------------
 # ALLOWED HOSTS
