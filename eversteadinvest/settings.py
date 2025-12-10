@@ -398,7 +398,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
 # -----------------------------
 # DEBUG - always False for production
 # -----------------------------
-DEBUG = False
+DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 
 # -----------------------------
 # ALLOWED HOSTS
@@ -513,16 +513,26 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# -----------------------------
-# STATIC FILES (WhiteNoise)
-# -----------------------------
+# ---------------------------------------
+# STATIC FILES — FIXED FOR RAILWAY
+# ---------------------------------------
 STATIC_URL = "/static/"
+
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Prevent WhiteNoise from deleting un-hashed files (optional safety)
-WHITENOISE_KEEP_ONLY_HASHED_FILES = False
+
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# Local static folder
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR / "static"]
+
 
 # -----------------------------
 # MEDIA FILES
