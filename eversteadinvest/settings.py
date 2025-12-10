@@ -178,12 +178,13 @@ DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 
 # ALLOWED HOSTS
 ALLOWED_HOSTS = [
-    "eversteadinvest-production.up.railway.app",
+    ".railway.app",  # allows all Railway apps
     "eversteadinvest.com",
     "www.eversteadinvest.com",
     "127.0.0.1",
     "localhost",
 ]
+
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
