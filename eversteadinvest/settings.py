@@ -513,25 +513,20 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# ---------------------------------------
-# STATIC FILES — FIXED FOR RAILWAY
-# ---------------------------------------
+# STATIC FILES
 STATIC_URL = "/static/"
-
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-
-
+# Use WhiteNoise for serving static files
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-
+# Only needed in development if you have local static folders
 if DEBUG:
     STATICFILES_DIRS = [BASE_DIR / "static"]
 
-# Local static folder
-if DEBUG:
-    STATICFILES_DIRS = [BASE_DIR / "static"]
+# Keep non-hashed files for safety
+WHITENOISE_KEEP_ONLY_HASHED_FILES = False
+
 
 
 # -----------------------------
