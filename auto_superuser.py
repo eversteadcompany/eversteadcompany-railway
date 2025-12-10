@@ -1,4 +1,4 @@
-﻿# import os
+# import os
 # import django
 
 # # Tell Django where settings are
