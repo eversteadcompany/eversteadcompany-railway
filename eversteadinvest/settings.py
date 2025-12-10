@@ -305,17 +305,24 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
-
 # ---------------------------------------
 # STATIC FILES — FIXED FOR RAILWAY
 # ---------------------------------------
 STATIC_URL = "/static/"
+
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 if DEBUG:
     STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# Local static folder
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR / "static"]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Login redirect
