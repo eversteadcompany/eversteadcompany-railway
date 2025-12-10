@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdrawal Submitted - EversteadInvest</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+
+    .wrapper {
+      max-width: 650px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #f52029 0%, #d81b23 100%);
+      padding: 40px 0;
+      text-align: center;
+      position: relative;
+      border-bottom: 4px solid #a832a3;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #f52029, #ff6b6b, #f52029);
+    }
+
+    .header img {
+      max-width: 180px;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #4a5568;
+      margin-bottom: 20px;
+    }
+
+    .status {
+      display: inline-block;
+      background: #d81b23;
+      padding: 12px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 25px;
+    }
+
+    .transaction-card {
+      background: #fff7f7;
+      border: 1px solid #fdeaea;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 25px 0;
+      text-align: left;
+    }
+
+    .tx-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #fdeaea;
+    }
+
+    .tx-row:last-child {
+      border-bottom: none;
+    }
+
+    .tx-label {
+      color: #e53e3e;
+      font-weight: 500;
+    }
+
+    .tx-value {
+      font-weight: 600;
+      color: #222222;
+    }
+
+    .amount {
+      color: #e53e3e;
+      font-size: 1.1em;
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, #fdeaea 0%, #ffeaea 100%);
+      border-left: 5px solid #e53e3e;
+      padding: 22px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-align: left;
+      font-size: 15px;
+      font-weight: 600;
+      color: #222222;
+    }
+
+    .btn-area {
+      margin: 35px 0;
+      text-align: center;
+    }
+
+    .button {
+      display: inline-block;
+      background: linear-gradient(135deg, #f52029 0%, #a832a3 100%);
+      color: #ffffff !important;
+      padding: 16px 40px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(245, 32, 41, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 32, 41, 0.35);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #f3f4f6;
+      padding: 25px;
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .footer-links a {
+      color: #f52029;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .security-note {
+      background: #fff2f2;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-top: 20px;
+      border: 1px solid #fdeaea;
+      color: #222222;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .content {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <div class="header">
+      <img src="https://eversteadinvest.com/static/assets/images/logo.png" alt="EversteadInvest Logo">
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <h2>Withdrawal Request Received</h2>
+
+      <div class="status">
+        Pending Approval
+      </div>
+
+      <p>Hello <strong>{{ username }}</strong>,</p>
+
+      <p>Your withdrawal request has been successfully submitted and is now awaiting review by our finance team.</p>
+
+      <div class="transaction-card">
+        <div class="tx-row">
+          <span class="tx-label">Amount:</span>
+          <span class="tx-value amount">${{ amount }}</span>
+        </div>
+
+        <div class="tx-row">
+          <span class="tx-label">Wallet Address:</span>
+          <span class="tx-value">{{ wallet_address }}</span>
+        </div>
+
+        <div class="tx-row">
+          <span class="tx-label">Date Submitted:</span>
+          <span class="tx-value">{{ payment_date }}</span>
+        </div>
+
+        <div class="tx-row">
+          <span class="tx-label">Transaction ID:</span>
+          <span class="tx-value">#{{ transaction_id }}</span>
+        </div>
+      </div>
+
+      <div class="info-box">
+        Withdrawals are usually processed within <strong>2–6 business hours</strong>.
+      </div>
+
+      <p>You will receive another email once your withdrawal has been approved and released.</p>
+
+      <div class="btn-area">
+        <a href="https://eversteadinvest.com/userprofile/dashboard/" class="button">
+          View Dashboard
+        </a>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>&copy; {{ year }} EversteadInvest. All rights reserved.</p>
+
+      <div class="footer-links">
+        <a href="https://eversteadinvest.com">Website</a> |
+        <a href="mailto:support@eversteadinvest.com">Support</a> |
+        <a href="https://eversteadinvest.com/contact">Contact</a>
+      </div>
+
+      <div class="security-note">
+        This message is intended only for the account owner. Please do not share or forward this email.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

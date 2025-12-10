@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deposit Rejected - Eversteadinvest</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+      margin: 0;
+      padding: 0;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #f52029 0%, #d81b23 100%);
+      padding: 35px 0;
+      text-align: center;
+      position: relative;
+      border-bottom: 4px solid #a832a3;
+    }
+
+    .header img {
+      max-width: 180px;
+      filter: brightness(0) invert(1);
+    }
+
+    h2 {
+      margin-top: 25px;
+      color: #f52029;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .content {
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #4a5568;
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+      border-left: 4px solid #f52029;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 25px 0;
+      text-align: center;
+      border:1px solid #fed7d7;
+    }
+
+    .info-box p {
+      color: #911f1f;
+      font-weight: 600;
+    }
+
+    .button-container {
+      text-align: center;
+      margin: 35px 0;
+    }
+
+    .button {
+      display: inline-block;
+      background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%);
+      color: #ffffff;
+      padding: 16px 40px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(245,32,41,0.3);
+      border: none;
+      cursor: pointer;
+    }
+
+    .footer {
+      background: #f3f4f6;
+      padding: 25px;
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280;
+      border-top:1px solid #e5e7eb;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="header">
+      <img src="https://eversteadinvest.com/static/assets/images/logo.png" alt="Eversteadinvest Logo">
+    </div>
+
+    <div class="content">
+
+      <h2>Deposit Rejected ❌</h2>
+
+      <p>Hello <strong style="color:#f52029;">{{ username }}</strong>,</p>
+
+      <p>
+        Unfortunately, your recent deposit could not be approved.  
+        Please review the details below:
+      </p>
+
+      <div class="info-box">
+        <p><strong>Deposit Details</strong></p>
+        <p>💰 Amount: <strong>${{ amount }}</strong></p>
+        <p>📝 Transaction ID: <strong>{{ transaction_id }}</strong></p>
+        <p>📅 Attempted Date: <strong>{{ approval_date }}</strong></p>
+      </div>
+
+      <p>
+        Common reasons may include invalid proof of payment, unverifiable transaction, or insufficient confirmation time.
+      </p>
+
+      <p>
+        If you believe this decision was made in error, please contact our support team for further assistance.
+      </p>
+
+      <div class="button-container">
+        <a href="https://www.eversteadinvest.com/userprofile/dashboard/" class="button">
+          Return to Dashboard
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <p>&copy; Eversteadinvest. All rights reserved.</p>
+      <p>This is an automated message — please do not reply.</p>
+    </div>
+
+  </div>
+</body>
+</html>

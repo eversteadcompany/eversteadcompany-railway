@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deposit Approved - Eversteadinvest</title>
+</head>
+
+<body style="margin:0; padding:0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%); color:#2d3748; line-height:1.6;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td align="center">
+
+        <table width="650" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="border-radius:16px; overflow:hidden; border:1px solid #e2e8f0; box-shadow:0 8px 32px rgba(0,0,0,0.08);">
+          
+          <!-- HEADER -->
+          <tr>
+            <td align="center" style="padding:35px 0; position:relative; background: linear-gradient(135deg, #f52029 0%, #d81b23 100%); border-bottom:4px solid #a832a3;">
+              <div style="display:inline-block; padding:15px; border-radius:12px; background: rgba(255,255,255,0.1); backdrop-filter:blur(10px);">
+                <img src="https://eversteadinvest.com/static/assets/images/logo.png" alt="Eversteadinvest Logo" width="170" style="display:block; filter: brightness(0) invert(1);">
+              </div>
+            </td>
+          </tr>
+
+          <!-- CONTENT -->
+          <tr>
+            <td style="padding:50px 40px; text-align:center;">
+              
+              <h2 style="margin-top:0; margin-bottom:25px; font-size:28px; font-weight:700; background: linear-gradient(135deg, #1a202c, #2d3748); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
+                Deposit Approved
+              </h2>
+
+              <p>Hello <strong class="username" style="color:#f52029; font-weight:600;">{{ username }}</strong>,</p>
+
+              <p>
+                Great news! Your deposit has been 
+                <strong style="color:#16a34a;">successfully approved</strong> 
+                and added to your Eversteadinvest account balance.
+              </p>
+
+              <div class="highlight-box" style="background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%); border:1px solid #fed7d7; border-radius:12px; padding:20px; margin:25px 0; text-align:center; border-left:4px solid #f52029;">
+                <p><strong>Deposit Details</strong></p>
+                <p>Amount Approved: <strong>${{ amount }}</strong></p>
+                <p>Transaction ID: <strong>{{ transaction_id }}</strong></p>
+                <p>Status: <strong style="color:#16a34a;">Approved</strong></p>
+                <p>Date Approved: <strong>{{ approval_date }}</strong></p>
+              </div>
+
+              <p>
+                Your updated balance is now available for trading and investment.
+                Thank you for choosing Eversteadinvest — where your wealth grows securely.
+              </p>
+
+              <div class="button-container" style="text-align:center; margin:35px 0;">
+                <a href="https://www.eversteadinvest.com/userprofile/dashboard/" style="display:inline-block; background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%); color:#ffffff; padding:16px 40px; border-radius:10px; text-decoration:none; font-weight:600; font-size:16px; box-shadow:0 4px 15px rgba(245,32,41,0.3);">
+                  Go to Dashboard
+                </a>
+              </div>
+
+              <p>
+                If you did not authorize this deposit, please contact our support team immediately.
+              </p>
+
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="text-align:center; padding:25px; font-size:14px; color:#6b7280; border-top:1px solid #e5e7eb; background:#f3f4f6;">
+              <p>&copy; Eversteadinvest. All rights reserved.</p>
+              <p>This is an automated message, please do not reply.</p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

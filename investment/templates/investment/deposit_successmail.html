@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deposit Approved - Eversteadinvest</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+      margin: 0;
+      padding: 0;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #f52029 0%, #d81b23 100%);
+      padding: 35px 0;
+      text-align: center;
+      position: relative;
+      border-bottom: 4px solid #a832a3;
+    }
+
+    .header img {
+      max-width: 180px;
+      filter: brightness(0) invert(1);
+    }
+
+    h2 {
+      margin-top: 25px;
+      color: #1a202c;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .content {
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 16px;
+      color: #4a5568;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      color: #16a34a;
+      font-weight: 600;
+    }
+
+    /* INFO BOX */
+    .info-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+      border-left: 4px solid #16a34a;
+      padding: 22px;
+      border-radius: 12px;
+      margin: 25px 0;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .info-box p {
+      margin: 6px 0;
+      font-weight: 600;
+    }
+
+    /* BUTTON */
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%);
+      color: #ffffff;
+      padding: 16px 40px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(245,32,41,0.3);
+      border: none;
+      cursor: pointer;
+    }
+
+    .footer {
+      background: #f3f4f6;
+      padding: 25px;
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    
+    <div class="header">
+      <img src="https://eversteadinvest.com/static/assets/images/logo.png" alt="Eversteadinvest Logo" />
+    </div>
+
+    <div class="content">
+      <h2>Deposit Approved 🎉</h2>
+
+      <p>Hello <strong>{{ username }}</strong>,</p>
+
+      <p>Your deposit has been 
+        <span class="highlight">successfully approved</span> 
+        and credited to your account.
+      </p>
+
+      <div class="info-box">
+        <p><strong>Deposit Details</strong></p>
+        <p>💰 Amount Approved: <strong>${{ amount }}</strong></p>
+        <p>📝 Transaction ID: <strong>{{ transaction_id }}</strong></p>
+        <p>📌 Status: <span class="highlight">Approved</span></p>
+        <p>📅 Date Approved: <strong>{{ approval_date }}</strong></p>
+      </div>
+
+      <p>Your updated balance is now available for trading and investment.</p>
+
+      <div class="button-container">
+        <a href="https://www.eversteadinvest.com/userprofile/dashboard/" class="button">
+          Go to Dashboard
+        </a>
+      </div>
+
+      <p>If you did not authorize this deposit, please contact support immediately.</p>
+    </div>
+
+    <div class="footer">
+      <p>&copy; {{ now|date:"Y" }} Eversteadinvest. All rights reserved.</p>
+      <p>This is an automated message — please do not reply.</p>
+    </div>
+
+  </div>
+</body>
+</html>

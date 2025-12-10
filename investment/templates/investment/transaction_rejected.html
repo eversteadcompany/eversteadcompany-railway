@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deposit Rejected - Eversteadinvest</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+
+    .wrapper {
+      max-width: 650px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #f52029 0%, #d81b23 100%);
+      padding: 40px 0;
+      text-align: center;
+      position: relative;
+      border-bottom: 4px solid #a832a3;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #f52029, #ff6b6b, #f52029);
+    }
+
+    .header img {
+      max-width: 180px;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #4a5568;
+      margin-bottom: 20px;
+    }
+
+    /* INFO BOX */
+    .info-box {
+      background: linear-gradient(135deg, #fdeaea 0%, #ffeaea 100%);
+      border-left: 5px solid #e53e3e;
+      padding: 22px;
+      border-radius: 12px;
+      margin: 25px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-align: left;
+      font-size: 15px;
+    }
+
+    .info-box p {
+      margin: 8px 0;
+      font-weight: 600;
+    }
+
+    /* BUTTON */
+    .btn-area {
+      margin: 35px 0;
+      text-align: center;
+    }
+
+    .button {
+      display: inline-block;
+      background: linear-gradient(135deg, #f52029 0%, #a832a3 100%);
+      color: #ffffff !important;
+      padding: 16px 40px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(245, 32, 41, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 32, 41, 0.35);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #f3f4f6;
+      padding: 25px;
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .content {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <div class="header">
+      <img src="https://eversteadinvest.com/static/assets/images/logo.png" alt="Eversteadinvest Logo">
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <h2>Deposit Rejected ❌</h2>
+
+      <p>Hello <strong>{{ username }}</strong>,</p>
+
+      <p>
+        Unfortunately, your recent deposit could not be approved. Please review the transaction details below:
+      </p>
+
+      <div class="info-box">
+        <p><strong>Deposit Details</strong></p>
+        <p>💰 Amount: <strong>${{ amount }}</strong></p>
+        <p>📝 Transaction ID: <strong>{{ transaction_id }}</strong></p>
+        <p>📅 Submitted On: <strong>{{ approval_date }}</strong></p>
+      </div>
+
+      <p><strong>Possible reasons for rejection:</strong></p>
+      <p>
+        • Invalid or unclear payment proof<br>
+        • Blockchain transaction could not be verified<br>
+        • Insufficient confirmation from the payment network
+      </p>
+
+      <div class="btn-area">
+        <a href="https://eversteadinvest.com/userprofile/dashboard/" class="button">
+          Return to Dashboard
+        </a>
+      </div>
+
+      <p>If you believe this decision was made in error, please contact our support team immediately.</p>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      &copy; {{ now|date:"Y" }} Eversteadinvest. All rights reserved.
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Transaction Alert - Eversteadinvest</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+
+    .wrapper {
+      max-width: 650px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #f52029 0%, #d81b23 100%);
+      text-align: center;
+      padding: 35px 20px;
+      border-bottom: 4px solid #a832a3;
+    }
+
+    .header img {
+      width: 160px;
+      height: auto;
+      filter: brightness(0) invert(1);
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 50px 40px;
+    }
+
+    h2 {
+      color: #1a202c;
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #4a5568;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      color: #16a34a;
+      font-weight: 600;
+    }
+
+    /* INFO BOX */
+    .info-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+      border-left: 4px solid #16a34a;
+      padding: 22px;
+      border-radius: 12px;
+      margin: 25px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .info-box p {
+      margin: 8px 0;
+      font-weight: 600;
+    }
+
+    /* BUTTON */
+    .btn-area {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      background: linear-gradient(135deg, #eb252f 0%, #a832a3 50%, #610606 100%);
+      color: #ffffff !important;
+      padding: 16px 40px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(245, 32, 41, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 32, 41, 0.35);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #f3f4f6;
+      padding: 25px;
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <div class="header">
+      <img src="https://eversteadinvest.com/static/assets/images/logo.png" alt="Eversteadinvest Logo">
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <h2>New Transaction Alert 🔔</h2>
+
+      <p>Hello <strong>{{ username }}</strong>,</p>
+
+      <p>
+        A new <strong>{{ transaction_type }}</strong> has been processed on your account.
+        Please review the details below.
+      </p>
+
+      <div class="info-box">
+        <p><strong>Transaction Details</strong></p>
+        <p>💳 Type: <strong>{{ transaction_type }}</strong></p>
+        <p>💰 Amount: <strong>${{ amount }}</strong></p>
+        <p>📝 Transaction ID: <strong>{{ transaction_id }}</strong></p>
+        <p>📅 Date: <strong>{{ transaction_date }}</strong></p>
+        {% if status %}
+        <p>📌 Status: <span class="highlight">{{ status }}</span></p>
+        {% endif %}
+      </div>
+
+      <div class="btn-area">
+        <a href="https://www.eversteadinvest.com/userprofile/dashboard/" class="button">
+          View Your Dashboard
+        </a>
+      </div>
+
+      <p>If you did not authorize this transaction, please contact our support team immediately.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>&copy; {{ now|date:"Y" }} Eversteadinvest. All rights reserved.</p>
+      <p>This is an automated notification — please do not reply.</p>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
