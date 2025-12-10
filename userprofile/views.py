@@ -235,6 +235,7 @@ import logging
 
 from .forms import UserRegistrationForm, UserProfileForm
 from .models import UserProfile
+from utils.email_utils import send_resend_email
 
 logger = logging.getLogger(__name__)
 
@@ -394,13 +395,13 @@ logger = logging.getLogger(__name__)
 #     })
 
 
+logger = logging.getLogger(__name__)
+
 def register(request):
-    # Redirect if already logged in
     if request.user.is_authenticated:
         messages.info(request, "You’re already logged in.")
         return redirect("userprofile:dashboard")
 
-    # Check if a referral code is in the URL query parameters
     initial_referral = request.GET.get("ref", "")
 
     if request.method == "POST":
@@ -408,41 +409,81 @@ def register(request):
         profile_form = UserProfileForm(request.POST, request.FILES)
 
         if user_form.is_valid() and profile_form.is_valid():
+
             try:
+                # Create user
                 user = user_form.save(commit=False)
                 user.set_password(user_form.cleaned_data["password1"])
                 user.save()
 
+                logger.info(f"[REGISTER] New user registered: {user.email}")
+
+                # Create profile
                 profile = profile_form.save(commit=False)
                 profile.user = user
 
-                # Store the code used (if any) in used_referral_code
                 used_ref = profile_form.cleaned_data.get("referral_bonus") or initial_referral
                 if used_ref:
                     profile.used_referral_code = used_ref
 
-                    # Optional: give bonus if the referral code matches a real user
-                    if used_ref == "SEED14F":  # or you can check against real users
+                    if used_ref == "SEED14F":
                         profile.referral_reward += Decimal("50.00")
+                        logger.info(f"[REFERRAL] Referral bonus applied for {user.email}")
 
                 profile.save()
 
-                # Continue with welcome email, login, redirect...
+                # -----------------------------------------------
+                # ✅ SEND WELCOME EMAIL USING RESEND API
+                # -----------------------------------------------
+                try:
+                    subject = "Welcome to Stablelinkcapitalinvest"
+                    html_content = render_to_string(
+                        "userprofile/register_mail.html",
+                        {
+                            "username": user.username,
+                            "dashboard_url": "https://www.stablelinkcapital.com/userprofile/dashboard/"
+                        }
+                    )
+
+                    # Use your helper function (Resend API)
+                    send_resend_email(
+                        to=user.email,
+                        subject=subject,
+                        html=html_content,
+                    )
+
+                    logger.info(f"[EMAIL SENT] Welcome email sent via Resend to {user.email}")
+
+                except Exception as e:
+                    logger.error(
+                        f"[EMAIL ERROR] Failed sending welcome email via Resend to {user.email}: {e}",
+                        exc_info=True
+                    )
+
                 django_login(request, user)
                 messages.success(request, "Your Wallet has been created successfully!")
                 return redirect("userprofile:dashboard")
 
             except Exception as e:
-                messages.error(request, f"Error: {str(e)}")
+                logger.error(f"[REGISTER ERROR] Registration failed: {e}", exc_info=True)
+                messages.error(request, "Something went wrong during registration. Check logs.")
+
+        else:
+            logger.warning(f"[FORM ERROR] User form: {user_form.errors} | Profile form: {profile_form.errors}")
+
     else:
-        # Pre-fill the referral code if present in the URL
         user_form = UserRegistrationForm()
         profile_form = UserProfileForm(initial={"referral_bonus": initial_referral})
 
-    return render(request, "userprofile/register.html", {
-        "user_form": user_form,
-        "profile_form": profile_form,
-    })
+    return render(
+        request,
+        "userprofile/register.html",
+        {
+            "user_form": user_form,
+            "profile_form": profile_form,
+        },
+    )
+
 
 
 
